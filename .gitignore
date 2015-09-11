@@ -1,0 +1,13 @@
+# dictionary data  
+spell/      
+# swp directory
+swp/
+# vim temp files
+*.swp       
+# plugins dir
+*bundle
+*plugged
+# some strange stuff
+.DS_Store
+*.netrwhist
+.Rhistory
