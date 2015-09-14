@@ -15,4 +15,4 @@ else
     mkdir swp
 fi
 
-ln -sf nvimrc ~/.nvimrc 
+ln -sf ~/.nvim/nvimrc ~/.nvimrc 
