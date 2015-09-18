@@ -3,16 +3,17 @@
 git --version 2>&1 >/dev/null
 GIT_IS_AVAILABLE=$?
 
-if [ -d plugged ]; then
-    echo "It appears you already have a plugged dir - skipping step.\n"
-else
+if [ ! $GIT_IS_AVAILABLE -eq 0 ]; then
+    echo "You need to install git first!\n"
+    return -1
+fi
+
+if [ ! -d plugged ]; then
     mkdir  plugged
 fi
 
-if [ -d swp ]; then
-    echo "It appears you already have a swp dir - skipping step.\n"
-else
+if [ ! -d swp ]; then
     mkdir swp
 fi
 
-ln -sf ~/.nvim/nvimrc ~/.nvimrc 
+ln -sf ~/.nvim/nvimrc ~/.nvimrc
