@@ -177,7 +177,7 @@ let g:ultisnips_python_style="sphinx"
 "Unite {{{2
 let g:unite_source_rec_max_cache_files = 2000
 
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert -no-resize file_rec/neovim<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert -no-resize file_rec/async<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -auto-preview -start-insert -no-resize file<cr>
 nnoremap <leader>h :<C-u>Unite -no-split -buffer-name=mru     -start-insert -no-resize file_mru<cr>
 nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert -no-resize outline<cr>
