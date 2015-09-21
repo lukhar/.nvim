@@ -1,13 +1,13 @@
 " vim: foldmethod=marker
 "repositories {{{1
 call plug#begin('~/.nvim/plugged')
-Plug 'benekastah/neomake'
 Plug 'Raimondi/delimitMate'
+Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline' | Plug 'Shougo/neomru.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'airblade/vim-gitgutter'
+Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
@@ -27,9 +27,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
-Plug 'xolox/vim-notes'
 call plug#end()
 
 "preferred editor setup {{{1
@@ -179,7 +179,7 @@ let g:unite_source_rec_max_cache_files = 2000
 
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert -no-resize file_rec/async<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -auto-preview -start-insert -no-resize file<cr>
-nnoremap <leader>h :<C-u>Unite -no-split -buffer-name=mru     -start-insert -no-resize file_mru<cr>
+nnoremap <leader>n :<C-u>Unite -no-split -buffer-name=notes   -start-insert -no-resize file_rec:$NOTES<cr>
 nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert -no-resize outline<cr>
 nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert -no-resize buffer<cr>
 nnoremap <leader>s :<C-u>Unite grep:.<cr>
@@ -213,6 +213,16 @@ endif
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 "tmux-navigator {{{2
+augroup navigator
+  autocmd!
+  autocmd FileType netrw call s:reset_netrw_keys()
+augroup END
+
+function! s:reset_netrw_keys() abort
+  nmap <buffer> <silent> <c-h> <Plug>NetrwHideEdit
+  nmap <buffer> <silent> <c-l> <Plug>NetrwRefresh
+endfunction
+
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
@@ -246,3 +256,6 @@ let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
 " Neomake {{{2
 autocmd! BufWritePost * Neomake
+" pandoc {{{2
+let g:pandoc#folding#fdc = 0
+let g:pandoc#spell#enabled = 0
