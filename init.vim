@@ -1,12 +1,13 @@
 " vim: foldmethod=marker
 "repositories {{{1
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'airblade/vim-gitgutter'
+Plug 'asenac/vim-opengrok'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
@@ -16,6 +17,7 @@ Plug 'honza/dockerfile.vim'
 Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lsdr/monokai'
+Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'othree/xml.vim'
 Plug 'pgdouyon/vim-evanesco'
@@ -90,7 +92,7 @@ set completeopt=menuone,longest         " get rid of pop up preview
 set pumheight=15                        " set pop up menu to have fixed length
 
 " write all temporary files into one directory
-set directory=$HOME/.nvim/swp//
+set directory=$HOME/.config/nvim/swp//
 
 " faster macro execution
 set lazyredraw
@@ -260,3 +262,8 @@ autocmd! BufWritePost * Neomake
 " pandoc {{{2
 let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#enabled = 0
+" opengrok {{{2
+let g:opengrok_jar = '/opt/opengrok/lib/opengrok.jar'
+let g:opengrok_ctags = '/usr/local/bin/ctags'
+" TagBar {{{2
+nnoremap <silent> <F9> :TagbarToggle<CR>

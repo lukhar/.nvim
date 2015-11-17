@@ -15,5 +15,3 @@ fi
 if [ ! -d swp ]; then
     mkdir swp
 fi
-
-ln -sf ~/.nvim/nvimrc ~/.nvimrc
