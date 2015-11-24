@@ -267,3 +267,5 @@ let g:opengrok_jar = '/opt/opengrok/lib/opengrok.jar'
 let g:opengrok_ctags = '/usr/local/bin/ctags'
 " TagBar {{{2
 nnoremap <silent> <F9> :TagbarToggle<CR>
+" netrw {{{2
+let g:netrw_liststyle = 3
