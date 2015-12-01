@@ -248,7 +248,6 @@ let g:notes_suffix = '.note'
 let g:ycm_filetype_blacklist = {
     \ 'tagbar' : 1,
     \ 'qf' : 1,
-    \ 'notes' : 1,
     \ 'unite' : 1,
     \}
 let g:ycm_auto_trigger = 1
