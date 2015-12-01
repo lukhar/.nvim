@@ -252,6 +252,7 @@ let g:ycm_filetype_blacklist = {
     \ 'unite' : 1,
     \}
 let g:ycm_auto_trigger = 1
+let g:ycm_key_detailed_diagnostics = '' " disable default mapping
 let g:ycm_key_list_previous_completion = ['<S-TAB>']
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " local-vimrc {{{2
@@ -265,6 +266,9 @@ let g:pandoc#spell#enabled = 0
 " opengrok {{{2
 let g:opengrok_jar = '/opt/opengrok/lib/opengrok.jar'
 let g:opengrok_ctags = '/usr/local/bin/ctags'
+
+nnoremap <leader>d :OgSearch d<CR><CR>
+nnoremap <leader>r :OgSearch r<CR><CR>
 " TagBar {{{2
 nnoremap <silent> <F9> :TagbarToggle<CR>
 " netrw {{{2
