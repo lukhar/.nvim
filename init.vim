@@ -268,6 +268,7 @@ let g:opengrok_ctags = '/usr/local/bin/ctags'
 
 nnoremap <leader>d :OgSearch d<CR><CR>
 nnoremap <leader>r :OgSearch r<CR><CR>
+nnoremap <leader>p :OgSearch p<CR><CR>
 " TagBar {{{2
 nnoremap <silent> <F9> :TagbarToggle<CR>
 " netrw {{{2
