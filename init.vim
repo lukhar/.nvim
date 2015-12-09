@@ -1,11 +1,6 @@
 " vim: foldmethod=marker
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
-Plug 'Raimondi/delimitMate'
-Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'airblade/vim-gitgutter'
 Plug 'asenac/vim-opengrok'
 Plug 'benekastah/neomake'
@@ -13,6 +8,7 @@ Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'embear/vim-localvimrc'
+Plug 'ensime/ensime-vim'
 Plug 'honza/dockerfile.vim'
 Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
@@ -21,8 +17,12 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'othree/xml.vim'
 Plug 'pgdouyon/vim-evanesco'
+Plug 'Raimondi/delimitMate'
 Plug 'rodjek/vim-puppet'
 Plug 'ryanoasis/vim-devicons'
+Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tfnico/vim-gradle'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
@@ -31,6 +31,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
