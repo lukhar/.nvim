@@ -1,8 +1,10 @@
 " vim: foldmethod=marker
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
+Plug 'Raimondi/delimitMate'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'airblade/vim-gitgutter'
-Plug 'asenac/vim-opengrok'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
@@ -10,19 +12,18 @@ Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'embear/vim-localvimrc'
 Plug 'ensime/ensime-vim'
 Plug 'honza/dockerfile.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lsdr/monokai'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'othree/xml.vim'
 Plug 'pgdouyon/vim-evanesco'
-Plug 'Raimondi/delimitMate'
 Plug 'rodjek/vim-puppet'
 Plug 'ryanoasis/vim-devicons'
-Plug 'Shougo/unite.vim' | Plug 'Shougo/unite-outline'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tfnico/vim-gradle'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
@@ -31,7 +32,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
@@ -179,44 +179,16 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 let g:ultisnips_python_quoting_style="single"
 let g:ultisnips_python_style="sphinx"
-"Unite {{{2
-let g:unite_source_rec_max_cache_files = 2000
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('buffer,file,file_rec', 'sorters', 'sorter_selecta')
+"fzf {{{2
+let g:fzf_layout = { 'up': '40%' }
+nnoremap <leader>t :GitFiles<cr>
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>n :Files $NOTES<cr>
+nnoremap <leader>e :Tags<cr>
+nnoremap <leader>E :BTags<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>s :Ag<space>
 
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert -no-resize file_rec/async<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -auto-preview -start-insert -no-resize file<cr>
-nnoremap <leader>n :<C-u>Unite -no-split -buffer-name=notes   -start-insert -no-resize file_rec:$NOTES<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert -no-resize outline<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=files -start-insert -no-resize buffer<cr>
-nnoremap <leader>s :<C-u>Unite grep:.<cr>
-
-"hack for removing unite buffers form jumplist (UniteResume) doesn't work because of that"
-autocmd BufLeave \[unite\]* if "nofile" ==# &buftype | setlocal bufhidden=wipe | endif
-
-if executable('ag')
-  let g:unite_source_rec_async_command =
-    \ ['ag', '-p ~/.config/.agignore', '--follow', '--nocolor', '--nogroup',
-    \  '--hidden', '-g', '']
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-    \ '-i --vimgrep --hidden --ignore ' .
-    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-  let g:unite_source_grep_recursive_opt = ''
-  let g:unite_source_grep_max_candidates = 10000
-
-  set grepprg=ag\ --vimgrep\ $*
-  set grepformat=%f:%l:%c:%m
-endif
-
-" speed up recursive file searching
-"if executable('ack')
-"    let g:unite_source_rec_async_command = 'ack -f --nofilter'
-"    let g:unite_source_grep_command = 'ack'
-"    let g:unite_source_grep_default_opts = '--no-color --no-heading'
-"    let g:unite_source_grep_recursive_opt = ''
-"endif
 "airline {{{2
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
@@ -263,13 +235,6 @@ autocmd! BufWritePost * Neomake
 " pandoc {{{2
 let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#enabled = 0
-" opengrok {{{2
-let g:opengrok_jar = '/opt/opengrok/lib/opengrok.jar'
-let g:opengrok_ctags = '/usr/local/bin/ctags'
-
-nnoremap <leader>d :OgSearch d<CR><CR>
-nnoremap <leader>r :OgSearch r<CR><CR>
-nnoremap <leader>p :OgSearch p<CR><CR>
 " TagBar {{{2
 nnoremap <silent> <F9> :TagbarToggle<CR>
 " netrw {{{2
