@@ -13,3 +13,6 @@ swp/
 .Rhistory
 
 .init.vim-rplugin~
+
+# tags
+tags*
