@@ -241,4 +241,5 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 " netrw {{{2
 let g:netrw_liststyle = 3
 " gutentags {{{2
-let g:gutentags_enabled = 0
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_cache_dir = '~/.cache/gutentags'
