@@ -9,6 +9,7 @@ Plug 'benekastah/neomake'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'embear/vim-localvimrc'
 Plug 'ensime/ensime-vim'
 Plug 'honza/dockerfile.vim'
@@ -211,13 +212,6 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 " solarized {{{2
 call togglebg#map("<F10>")
-" notes {{{2
-if has("gui_macvim")
-    let g:notes_directories = ['~/Documents/shared/notes']
-else
-    let g:notes_directories = ['~/documents/shared/notes']
-endif
-let g:notes_suffix = '.note'
 " YouCompleteMe {{{2
 let g:ycm_filetype_blacklist = {
     \ 'tagbar' : 1,
@@ -243,3 +237,10 @@ let g:netrw_liststyle = 3
 " gutentags {{{2
 set statusline+=%{gutentags#statusline()}
 let g:gutentags_cache_dir = '~/.cache/gutentags'
+" scripts {{{1
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+      execute ":'<,'>normal @".nr2char(getchar())
+    endfunction
