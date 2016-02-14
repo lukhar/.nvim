@@ -229,6 +229,12 @@ let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
 " Neomake {{{2
 autocmd! BufWritePost * Neomake
+let g:neomake_error_sign = {
+    \ 'text': '✗',
+    \ }
+let g:neomake_warning_sign = {
+    \ 'text': '⚠',
+    \ }
 " pandoc {{{2
 let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#enabled = 0
