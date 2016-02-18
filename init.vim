@@ -95,7 +95,11 @@ set completeopt=menuone,longest         " get rid of pop up preview
 set pumheight=15                        " set pop up menu to have fixed length
 
 " write all temporary files into one directory
-set directory=$HOME/.config/nvim/swp//
+set directory=$HOME/.cache/nvim/swp/
+
+" keep undo history in one directory
+set undofile
+set undodir=$HOME/.cache/nvim/undo/
 
 " faster macro execution
 set lazyredraw
