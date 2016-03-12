@@ -88,7 +88,7 @@ filetype on
 filetype indent on
 
 "color scheme
-colorscheme solarized
+silent! colorscheme solarized
 syntax on
 
 " auto completion adjustments
@@ -219,7 +219,7 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 " solarized {{{2
-call togglebg#map("<F10>")
+silent! call togglebg#map("<F10>")
 " YouCompleteMe {{{2
 let g:ycm_filetype_blacklist = {
     \ 'tagbar' : 1,
@@ -250,7 +250,6 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 let g:netrw_liststyle = 3
 let g:netrw_localrmdir='rm -r'
 " gutentags {{{2
-set statusline+=%{gutentags#statusline()}
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 " scripts {{{1
