@@ -178,8 +178,7 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 "UltiSnips  {{{2
-let g:UltiSnipsSnippetsDir='~/.vim/customized_snippets'
-let g:UltiSnipsSnippetDirectories=["customized_snippets", "bundle/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["plugged/vim-snippets/UltiSnips"]
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -212,7 +211,11 @@ function! s:reset_netrw_keys() abort
 endfunction
 
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+if has('mac')
+    nnoremap <silent> <BS> :<C-u>TmuxNavigateLeft<CR>
+else
+    nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+endif
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
