@@ -211,11 +211,7 @@ function! s:reset_netrw_keys() abort
 endfunction
 
 let g:tmux_navigator_no_mappings = 1
-if has('mac')
-    nnoremap <silent> <BS> :<C-u>TmuxNavigateLeft<CR>
-else
-    nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-endif
+nnoremap <silent> <BS> :<C-u>TmuxNavigateLeft<CR>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
