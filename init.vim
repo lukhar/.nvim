@@ -178,7 +178,7 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 "UltiSnips  {{{2
-let g:UltiSnipsSnippetDirectories=["plugged/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["customized_snippets", "plugged/vim-snippets/UltiSnips"]
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
