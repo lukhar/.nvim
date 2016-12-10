@@ -16,6 +16,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'ensime/ensime-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
 Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lsdr/monokai'
@@ -24,7 +25,6 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'othree/xml.vim'
-Plug 'pgdouyon/vim-evanesco'
 Plug 'rodjek/vim-puppet'
 Plug 'tfnico/vim-gradle'
 Plug 'tpope/vim-abolish'
@@ -164,6 +164,9 @@ map <silent> <A-h> <C-w>2<
 map <silent> <A-j> <C-W>2-
 map <silent> <A-k> <C-W>2+
 map <silent> <A-l> <C-w>2>
+
+" numbered search results for easier navigation
+nnoremap // :g//#<Left><Left>
 
 "plugin settings {{{1
 "xml {{{2
