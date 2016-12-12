@@ -48,6 +48,7 @@ call plug#end()
 "properties {{{2
 " pipe cursor in terminal
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 " set powerline Fonts
 if has("gui_macvim")
     set guifont=Monaco\ for\ Powerline\:h11
@@ -130,6 +131,9 @@ if has("wildmenu")
     set wildmode=longest:full,full " command <Tab> completion, list matches, then longest common part, then all.
 endif"}}}
 " mappings {{{2
+" set <Leader> to , instead of \
+let mapleader=","
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
@@ -145,9 +149,6 @@ nnoremap <Leader>cp :Glcd<CR>:pwd<CR>
 " copy paste mappings
 vnoremap <C-Insert> "+y
 map <S-Insert> "+gP
-
-" set <Leader> to , instead of \
-let mapleader=","
 
 " source current line or visual selection
 vnoremap <Leader>S y:execute @@<CR>:echo 'Sourced selection.'<CR>
