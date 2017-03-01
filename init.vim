@@ -17,6 +17,7 @@ Plug 'ensime/ensime-vim', { 'for': 'scala'}
 Plug 'hashivim/vim-terraform'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lsdr/monokai'
@@ -37,7 +38,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
@@ -225,6 +225,8 @@ function! s:reset_netrw_keys() abort
 endfunction
 
 let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 2
+
 nnoremap <silent> <BS> :<C-u>TmuxNavigateLeft<CR>
 nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
