@@ -134,7 +134,7 @@ if has("wildmenu")
 endif"}}}
 " mappings {{{2
 " set <Leader> to , instead of \
-let mapleader=","
+let mapleader=" "
 
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
