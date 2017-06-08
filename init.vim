@@ -133,7 +133,7 @@ if has("wildmenu")
     set wildmode=longest:full,full " command <Tab> completion, list matches, then longest common part, then all.
 endif"}}}
 " mappings {{{2
-" set <Leader> to , instead of \
+" set <Leader> to <space> instead of \
 let mapleader=" "
 
 " Copy and paste to system clipboard
