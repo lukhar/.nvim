@@ -208,7 +208,7 @@ if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 endif
 
-let g:fzf_layout = { 'up': '40%' }
+let g:fzf_layout = { 'up': '~40%' }
 nnoremap <Leader>r :GFiles<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>n :Files $NOTES<CR>
