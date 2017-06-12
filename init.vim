@@ -213,6 +213,7 @@ nnoremap <Leader>r :GFiles<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>n :Files $NOTES<CR>
 nnoremap <Leader>e :Tags<CR>
+nnoremap <Leader>w :Windows<CR>
 nnoremap <Leader>E :BTags<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>s :Ag<space>
