@@ -47,8 +47,6 @@ call plug#end()
 
 "preferred editor setup {{{1
 "properties {{{2
-" pipe cursor in terminal
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " set powerline Fonts
 if has("gui_macvim")
