@@ -109,8 +109,9 @@ set directory=$HOME/.cache/nvim/swp/
 set undofile
 set undodir=$HOME/.cache/nvim/undo/
 
-" faster macro execution
+" faster screen redraw
 set lazyredraw
+set ttyfast
 
 " retain screen position when switching the buffers
 if v:version >= 700
