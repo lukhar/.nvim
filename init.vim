@@ -8,8 +8,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bigbrozer/vim-nagios'
 Plug 'chrisbra/vim-diff-enhanced'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-system-copy'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'ekalinin/Dockerfile.vim'
@@ -22,6 +22,7 @@ Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lsdr/monokai'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'manasthakur/vim-vinegar'
 Plug 'mattn/emmet-vim'
@@ -47,8 +48,10 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
 call plug#end()
 
 "preferred editor setup {{{1
-"properties {{{2
+" nvim specfic settings {{{2
+set inccommand=nosplit
 
+"properties {{{2
 " set powerline Fonts
 if has("gui_macvim")
     set guifont=Monaco\ for\ Powerline\:h11
@@ -272,10 +275,12 @@ let g:netrw_localrmdir='rm -r'
 " gutentags {{{2
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_cache_dir = '~/.cache/gutentags'
+" highlightedyank {{{2
+let g:highlightedyank_highlight_duration = 150
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 function! ExecuteMacroOverVisualRange()
-    echo "@".getcmdline()
-      execute ":'<,'>normal @".nr2char(getchar())
-    endfunction
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
