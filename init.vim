@@ -3,7 +3,6 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bigbrozer/vim-nagios'
@@ -15,8 +14,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'hashivim/vim-terraform'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-slash'
 Plug 'justinmk/vim-dirvish'
 Plug 'jwhitley/vim-colors-solarized'
@@ -39,11 +37,11 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
+
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 call plug#end()
 
 "preferred editor setup {{{1
@@ -202,25 +200,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 let g:ultisnips_python_quoting_style="single"
 let g:ultisnips_python_style="sphinx"
-"fzf {{{2
-if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-endif
+"coc.vim {{{2
 
-let g:fzf_layout = { 'up': '~40%' }
-nnoremap <Leader>r :GFiles<CR>
-nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>n :Files $NOTES<CR>
-nnoremap <Leader>e :Tags<CR>
-nnoremap <Leader>w :Windows<CR>
-nnoremap <Leader>E :BTags<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>s :Ag<space>
-
-"airline {{{2
-let g:airline_powerline_fonts=0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'solarized'
+"lightline {{{2
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
+      \   'ritht': [ [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'cocstatus': 'coc#status',
+      \ },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
 "tmux-navigator {{{2
 augroup navigator
   autocmd!
@@ -241,16 +235,18 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 " solarized {{{2
 silent! call togglebg#map("<F10>")
-" YouCompleteMe {{{2
-let g:ycm_filetype_blacklist = {
-    \ 'tagbar' : 1,
-    \ 'qf' : 1,
-    \ 'unite' : 1,
-    \}
-let g:ycm_auto_trigger = 1
-let g:ycm_key_detailed_diagnostics = '' " disable default mapping
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
-nnoremap <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" coc.vim {{{2
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+let g:coc_global_extensions=['coc-json', 'coc-snippets', 'coc-python', 'coc-lists', 'coc-highlight', 'coc-yaml']
+
+" navigation
+nnoremap <Leader>f :CocList --top files<CR>
+nnoremap <Leader>n :lcd $NOTES<CR>:CocList --top files<CR>
+nnoremap <Leader>e :CocList --top tags<CR>
+nnoremap <Leader>w :CocList --top windows<CR>
+nnoremap <Leader>b :CocList --top buffers<CR>
+nnoremap <Leader>a :CocList --top lists<CR>
+nnoremap <Leader>s :CocList --top grep<space>
 " local-vimrc {{{2
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
@@ -280,3 +276,4 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
