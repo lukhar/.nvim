@@ -14,7 +14,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'hashivim/vim-terraform'
-Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim' | Plug 'mengelbrecht/lightline-bufferline'
 Plug 'junegunn/vim-slash'
 Plug 'justinmk/vim-dirvish'
 Plug 'jwhitley/vim-colors-solarized'
@@ -203,6 +203,7 @@ let g:ultisnips_python_style="sphinx"
 "coc.vim {{{2
 
 "lightline {{{2
+set showtabline=2
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
@@ -210,11 +211,19 @@ let g:lightline = {
       \   'ritht': [ [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
+      \   'filename': 'LightLineFilename',
       \   'gitbranch': 'fugitive#head',
       \   'cocstatus': 'coc#status',
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+function! LightLineFilename()
+  return expand('%')
+endfunction
 "tmux-navigator {{{2
 augroup navigator
   autocmd!
@@ -247,6 +256,20 @@ nnoremap <Leader>w :CocList --top windows<CR>
 nnoremap <Leader>b :CocList --top buffers<CR>
 nnoremap <Leader>a :CocList --top lists<CR>
 nnoremap <Leader>s :CocList --top grep<space>
+
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 " local-vimrc {{{2
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
