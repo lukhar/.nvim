@@ -2,7 +2,7 @@
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'bigbrozer/vim-nagios'
 Plug 'chrisbra/vim-diff-enhanced'
@@ -85,6 +85,9 @@ set cursorline                  " mark cursor position
 set laststatus=2                " always show status bar
 set hidden                      " unsaved buffers are hidden now (no more errors when opening new file while having unsaved changes)
 set mouse=a                     " enable scrolling
+set shortmess+=c                " don't give |ins-completion-menu| messages
+set nobackup
+set nowritebackup
 
 " 'smart' realtive line numbers
 set relativenumber
