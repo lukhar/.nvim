@@ -15,5 +15,5 @@
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": true,
   "list.source.grep.command": "ag",
-  "list.maxHeight": 50
+  "list.maxHeight": 50,
 }

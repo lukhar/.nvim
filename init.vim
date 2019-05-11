@@ -4,7 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
-Plug 'benekastah/neomake'
 Plug 'bigbrozer/vim-nagios'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'christoomey/vim-system-copy'
@@ -200,8 +199,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 let g:ultisnips_python_quoting_style="single"
 let g:ultisnips_python_style="sphinx"
-"coc.vim {{{2
-
 "lightline {{{2
 set showtabline=2
 let g:lightline = {
@@ -270,17 +267,20 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 " local-vimrc {{{2
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
-" Neomake {{{2
-autocmd! BufWritePost * Neomake
-let g:neomake_error_sign = {
-    \ 'text': '✗',
-    \ }
-let g:neomake_warning_sign = {
-    \ 'text': '⚠',
-    \ }
 " pandoc {{{2
 let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#default_langs = ['en', 'pl']
