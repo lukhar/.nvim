@@ -39,6 +39,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
+Plug 'lervag/vimtex'
 
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 call plug#end()
@@ -303,6 +304,12 @@ let g:gutentags_define_advanced_commands = 1
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 " highlightedyank {{{2
 let g:highlightedyank_highlight_duration = 150
+" vimtex {{{2
+if has('unix')
+  if has('mac')
+    let g:vimtex_view_method = 'skim'
+  endif
+endif
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
