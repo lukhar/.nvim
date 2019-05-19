@@ -308,6 +308,8 @@ let g:highlightedyank_highlight_duration = 150
 if has('unix')
   if has('mac')
     let g:vimtex_view_method = 'skim'
+  else
+    let g:vimtex_view_method = 'zathura'
   endif
 endif
 " scripts {{{1
