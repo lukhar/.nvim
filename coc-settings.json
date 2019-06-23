@@ -34,5 +34,10 @@
   "list.source.mru.defaultOptions": ["--top"],
   "list.source.quickfix.defaultOptions": ["--top"],
   "list.source.words.defaultOptions": ["--top"],
-  "list.source.snippets.defaultOptions": ["--top"]
+  "list.source.snippets.defaultOptions": ["--top"],
+
+  "snippets.ultisnips.directories": [
+    "mysnippets",
+    "UltiSnips"
+  ]
 }
