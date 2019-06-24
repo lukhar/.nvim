@@ -35,6 +35,9 @@
   "list.source.quickfix.defaultOptions": ["--top"],
   "list.source.words.defaultOptions": ["--top"],
   "list.source.snippets.defaultOptions": ["--top"],
+  "list.insertMappings": {
+		"<C-v>": "action:vsplit"
+  }, 
 
   "snippets.ultisnips.directories": [
     "mysnippets",
