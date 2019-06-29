@@ -191,6 +191,10 @@ endif
 "plugin settings {{{1
 "xml {{{2
 let xml_use_xhtml = 1           " enable plugin when editing html files
+"terraform-vim {{{2
+let g:terraform_fold_sections=1
+let g:terraform_align=1
+let g:rerraform_fmt_on_save=1
 "delimitMate {{{2
 let b:delimitMate_expand_space = 1
 let b:delimitMate_expand_cr = 2
@@ -204,7 +208,7 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 "UltiSnips  {{{2
-let g:UltiSnipsSnippetDirectories=["mysnippets", "plugged/vim-snippets/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=[$HOME."/.config/nvim/mysnippets", "plugged/vim-snippets/UltiSnips"]
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -266,7 +270,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 silent! call togglebg#map("<F10>")
 " coc.vim {{{2
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions=['coc-json', 'coc-snippets', 'coc-python', 'coc-lists', 'coc-highlight', 'coc-yaml']
+let g:coc_global_extensions=['coc-json', 'coc-python', 'coc-lists', 'coc-highlight', 'coc-yaml']
 
 " navigation
 nnoremap <Leader>f :CocList --top files<CR>
