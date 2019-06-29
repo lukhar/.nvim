@@ -6,6 +6,7 @@ Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'bigbrozer/vim-nagios'
 Plug 'chrisbra/vim-diff-enhanced'
+Plug 'cespare/vim-toml'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
