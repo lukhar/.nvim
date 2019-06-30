@@ -27,6 +27,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'othree/xml.vim'
+Plug 'vim-python/python-syntax'
 Plug 'rodjek/vim-puppet'
 Plug 'tfnico/vim-gradle'
 Plug 'tpope/vim-abolish'
@@ -190,6 +191,8 @@ if executable('ag')
 endif
 
 "plugin settings {{{1
+"python {{{2
+let g:python_highlight_all = 1
 "xml {{{2
 let xml_use_xhtml = 1           " enable plugin when editing html files
 "terraform-vim {{{2
