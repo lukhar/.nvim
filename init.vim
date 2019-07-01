@@ -92,6 +92,7 @@ set mouse=a                     " enable scrolling
 set shortmess+=c                " don't give |ins-completion-menu| messages
 set nobackup
 set nowritebackup
+set path=**                     " easier find (no **/ necessary)
 
 " 'smart' realtive line numbers
 set relativenumber
