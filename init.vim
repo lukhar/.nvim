@@ -156,7 +156,7 @@ let mapleader=" "
 cmap w!! w !sudo tee > /dev/null %
 
 " open file in the same dir
-cmap ew e <C-R>=expand("%:p:h") . "/" <CR>
+cmap eW e <C-R>=expand("%:p:h") . "/" <CR>
 
 " remove trailing spaces
 nmap _$ :%s/\v\s+$//e<CR>
@@ -248,16 +248,21 @@ let g:lightline = {
       \   'filename': 'LightLineFilename',
       \   'obsession': 'LightlineObsession',
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status',
+      \   'cocstatus': 'coc#status'
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
-      \   'obsession': 'LightlineObsession',
+      \   'obsession': 'LightlineObsession'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ },
+      \ 'tabline': {
+      \   'left': [['buffers']],
+      \   'right': [['close']]
       \ },
       \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 function! LightLineFilename()
   return expand('%')
