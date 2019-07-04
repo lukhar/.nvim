@@ -17,7 +17,6 @@ Plug 'hashivim/vim-terraform'
 Plug 'itchyny/lightline.vim' | Plug 'mengelbrecht/lightline-bufferline'
 Plug 'junegunn/vim-slash'
 Plug 'justinmk/vim-dirvish'
-Plug 'jwhitley/vim-colors-solarized'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lifepillar/vim-solarized8'
 Plug 'lsdr/monokai'
@@ -92,7 +91,7 @@ set mouse=a                     " enable scrolling
 set shortmess+=c                " don't give |ins-completion-menu| messages
 set nobackup
 set nowritebackup
-set path=**                     " easier find (no **/ necessary)
+set path+=**                     " easier find (no **/ necessary)
 
 " 'smart' realtive line numbers
 set relativenumber
