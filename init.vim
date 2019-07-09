@@ -188,6 +188,12 @@ nnoremap // :g//#<Left><Left>
 " use ag instaed of grep
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 "plugin settings {{{1
@@ -218,7 +224,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-let g:ultisnips_python_quoting_style="single"
+let g:ultisnips_python_quoting_style="double"
 let g:ultisnips_python_style="sphinx"
 
 

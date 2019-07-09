@@ -8,7 +8,8 @@
   },
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": true,
-  "list.source.grep.command": "ag",
+
+  "list.source.grep.command": "rg",
   "list.maxHeight": 50,
   "list.source.helptags.defaultOptions": ["--top"],
   "list.source.extensions.defaultOptions": ["--top"],
@@ -34,13 +35,10 @@
   "list.source.mru.defaultOptions": ["--top"],
   "list.source.quickfix.defaultOptions": ["--top"],
   "list.source.words.defaultOptions": ["--top"],
-  "list.source.snippets.defaultOptions": ["--top"],
   "list.insertMappings": {
-		"<C-v>": "action:vsplit"
-  }, 
+    "<C-v>": "action:vsplit"
+  },
 
-  "snippets.ultisnips.directories": [
-    "mysnippets",
-    "UltiSnips"
-  ]
+  "diagnostic.warningSign": ">",
+  "diagnostic.errorSign": ">>" 
 }
