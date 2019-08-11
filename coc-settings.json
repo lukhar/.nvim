@@ -40,5 +40,6 @@
   },
 
   "diagnostic.warningSign": ">",
-  "diagnostic.errorSign": ">>" 
+  "diagnostic.errorSign": ">>",
+  "java.errors.incompleteClasspath.severity": "ignore"
 }
