@@ -4,5 +4,5 @@ syn region Comment  start=+^\s*[uU]\?[rR]\?'''+ end=+'''+ keepend excludenl cont
 
 
 " highlight self and cls as keywords
-syn keyword hsType self
-syn keyword hsType cls
+" syn keyword hsType self
+" syn keyword hsType cls
