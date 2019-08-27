@@ -505,14 +505,14 @@ def __coerce__(self, other):
 	${25:pass}
 endsnippet
 
-snippet deff
+snippet def
 def ${1:function}(`!p 
 if snip.indent:
 	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
 	${0:${VISUAL:pass}}
 endsnippet
 
-snippet def "function with docstrings" b
+snippet defd "function with docstrings" b
 def ${1:function}(`!p
 if snip.indent:
 	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
@@ -522,7 +522,7 @@ write_function_docstring(t, snip) `
 endsnippet
 
 
-snippet defc "class method with docstrings" b
+snippet defcd "class method with docstrings" b
 @classmethod
 def ${1:function}(`!p
 if snip.indent:
@@ -533,7 +533,7 @@ write_function_docstring(t, snip) `
 endsnippet
 
 
-snippet defs "static method with docstrings" b
+snippet defsd "static method with docstrings" b
 @staticmethod
 def ${1:function}(${2:arg1}):
 	`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p
@@ -730,4 +730,11 @@ snippet pmdoc "pocoo style module doc string" b
 $0
 endsnippet
 
+####################
+# Debug statements #
+####################
+
+snippet ipdb "ipb breakpoint" b
+import ipdb; ipdb.set_trace()
+endsnippet 
 # vim:ft=snippets:

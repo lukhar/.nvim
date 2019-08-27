@@ -311,8 +311,8 @@ nnoremap <Leader>s :CocList --top grep<space>
 
 
 " remap keys for gotos
-nmap <silent> gy <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gi <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gF <Plug>(coc-format)
 
