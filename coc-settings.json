@@ -8,6 +8,7 @@
   },
   "python.autoComplete.addBrackets": true,
   "python.jediEnabled": true,
+  "python.trace.server": "verbose",
 
   "list.source.grep.command": "rg",
   "list.maxHeight": 50,

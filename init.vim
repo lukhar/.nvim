@@ -19,10 +19,10 @@ Plug 'junegunn/vim-slash'
 Plug 'justinmk/vim-dirvish'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lifepillar/vim-solarized8'
+Plug 'liuchengxu/vista.vim'
 Plug 'lsdr/monokai'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-highlightedyank'
-Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'othree/xml.vim'
@@ -52,9 +52,7 @@ set inccommand=nosplit
 
 "properties {{{2
 " set powerline Fonts
-if has("gui_macvim")
-    set guifont=Monaco\ for\ Powerline\:h11
-else
+if has("gui_running")
     "set guifont=DejaVu\ Sans\ Mono\ 10
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
@@ -348,8 +346,6 @@ let g:localvimrc_sandbox = 0
 let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#default_langs = ['en', 'pl']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['java', 'python', 'bash=sh', 'sql', 'groovy']
-" TagBar {{{2
-nnoremap <silent> <F9> :TagbarToggle<CR>
 " gutentags {{{2
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_cache_dir = '~/.cache/gutentags'
@@ -363,6 +359,10 @@ if has('unix')
     let g:vimtex_view_method = 'zathura'
   endif
 endif
+" vista {{{2
+let g:vista#renderer#enable_icon = 0
+let g:vista#echo_cursor = 0
+nnoremap <silent> <F9> :Vista<CR>
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
