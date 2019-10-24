@@ -241,18 +241,20 @@ endif
 "lightline {{{2
 set showtabline=2
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
       \   'right': [ [ 'lineinfo', 'cocstatus'],
       \            [ 'percent'],
-      \            [ 'obsession', 'fileformat', 'fileencoding', 'filetype' ] ]
+      \            [ 'obsession', 'fileformat', 'fileencoding'],
+      \            [ 'gutentags'] ],
       \ },
       \ 'component_function': {
       \   'filename': 'LightLineFilename',
       \   'obsession': 'LightlineObsession',
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'gutentags': 'gutentags#statusline',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
@@ -350,6 +352,13 @@ let g:pandoc#syntax#codeblocks#embeds#langs = ['java', 'python', 'bash=sh', 'sql
 " gutentags {{{2
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_cache_dir = '~/.cache/gutentags'
+let g:gutentags_file_list_command = 'rg --files'
+
+augroup MyGutentagsStatusLineRefresher
+    autocmd!
+    autocmd User GutentagsUpdating call lightline#update()
+    autocmd User GutentagsUpdated call lightline#update()
+augroup END
 " highlightedyank {{{2
 let g:highlightedyank_highlight_duration = 150
 " vimtex {{{2
