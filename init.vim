@@ -135,6 +135,9 @@ endif
 " automatically remove trailing whitespace characters on save
 autocmd FileType c,cpp,python,vim,js autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" use custom python
+let g:python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
+
 " tags location
 set tags=./.tags,.tags,./tags,tags
 
