@@ -302,7 +302,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 silent! call togglebg#map("<F10>")
 " coc.vim {{{2
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions=['coc-json', 'coc-ultisnips', 'coc-python', 'coc-lists', 'coc-yaml']
+let g:coc_global_extensions=['coc-json', 'coc-ultisnips', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals']
 
 " navigation
 nnoremap <Leader>f :CocList --top files<CR>
