@@ -32,6 +32,9 @@
   "list.insertMappings": {
     "<C-v>": "action:vsplit"
   },
+  "list.normalMappings": {
+    "<C-s>": "do:selectall"
+  },
 
   "diagnostic.warningSign": ">",
   "diagnostic.errorSign": ">>",
