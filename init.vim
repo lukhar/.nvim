@@ -92,7 +92,6 @@ set nobackup
 set nowritebackup
 set path+=**                    " easier find (no **/ necessary)
 set splitright                  " split on the right side of current pane
-set splitbelow                  " split below from current pane
 
 " 'smart' realtive line numbers
 set relativenumber
