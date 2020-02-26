@@ -284,14 +284,14 @@ write_init_body(args, t[2], snip)
 endsnippet
 
 snippet class "class" b
-class ${1:MyClass}(${2:object}):
+class ${1:MyClass}:
 
 	def __init__(self$3):
 		`!p 
-snip.rv = ""
 snip >> 2
+
 args = get_args(t[3])
-write_init_body(args, t[2], snip) `
+write_init_body(args, 'object', snip) `
 		$0
 endsnippet
 
