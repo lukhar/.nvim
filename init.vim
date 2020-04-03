@@ -16,7 +16,6 @@ Plug 'embear/vim-localvimrc'
 Plug 'hashivim/vim-terraform'
 Plug 'itchyny/lightline.vim' | Plug 'mengelbrecht/lightline-bufferline'
 Plug 'junegunn/vim-slash'
-Plug 'justinmk/vim-dirvish'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/vista.vim'
@@ -39,10 +38,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
 Plug 'lervag/vimtex'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 call plug#end()
@@ -303,7 +305,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 silent! call togglebg#map("<F10>")
 " coc.vim {{{2
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions=['coc-json', 'coc-ultisnips', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals']
+let g:coc_global_extensions=['coc-json', 'coc-ultisnips', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals', 'coc-tsserver']
 
 " navigation
 nnoremap <Leader>f :CocList --top files<CR>
@@ -377,6 +379,8 @@ endif
 let g:vista#renderer#enable_icon = 0
 let g:vista#echo_cursor = 0
 nnoremap <silent> <F9> :Vista<CR>
+" nertw {{{2
+let g:netrw_liststyle = 3
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
