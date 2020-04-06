@@ -20,7 +20,6 @@ Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/vista.vim'
 Plug 'lsdr/monokai'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mattn/emmet-vim'
 Plug 'nanotech/jellybeans.vim'
@@ -139,10 +138,8 @@ endif
 autocmd FileType c,cpp,python,vim,js autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " use custom python
+let g:loaded_python_provider = 0
 let g:python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
-
-" tags location
-set tags=./.tags,.tags,./tags,tags
 
 " wildmenu {{{2
 if has("wildmenu")
@@ -252,15 +249,13 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
       \   'right': [ [ 'lineinfo', 'cocstatus'],
       \            [ 'percent'],
-      \            [ 'obsession', 'fileformat', 'fileencoding'],
-      \            [ 'gutentags'] ],
+      \            [ 'obsession', 'fileformat', 'fileencoding'] ],
       \ },
       \ 'component_function': {
       \   'filename': 'LightLineFilename',
       \   'obsession': 'LightlineObsession',
       \   'gitbranch': 'fugitive#head',
       \   'cocstatus': 'coc#status',
-      \   'gutentags': 'gutentags#statusline',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
@@ -356,15 +351,27 @@ let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#default_langs = ['en', 'pl']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['java', 'python', 'bash=sh', 'sql', 'groovy']
 " gutentags {{{2
-let g:gutentags_define_advanced_commands = 1
-let g:gutentags_cache_dir = '~/.cache/gutentags'
-let g:gutentags_file_list_command = 'rg --files'
+" let g:gutentags_cache_dir = expand('~/.cache/vim/gutentags')
+" let g:gutentags_file_list_command = 'rg --files'
 
-augroup MyGutentagsStatusLineRefresher
-    autocmd!
-    autocmd User GutentagsUpdating call lightline#update()
-    autocmd User GutentagsUpdated call lightline#update()
-augroup END
+" let g:gutentags_generate_on_new = 1
+" let g:gutentags_generate_on_missing = 1
+" let g:gutentags_generate_on_write = 1
+" let g:gutentags_generate_on_empty_buffer = 0
+" let g:gutentags_define_advanced_commands = 1
+
+" let g:gutentags_ctags_extra_args = [
+"       \ '--tag-relative=yes',
+"       \ '--fields=+ailmnS',
+"       \ ]
+
+"command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')
+
+" augroup MyGutentagsStatusLineRefresher
+"     autocmd!
+"     autocmd User GutentagsUpdating call lightline#update()
+"     autocmd User GutentagsUpdated call lightline#update()
+" augroup END
 " highlightedyank {{{2
 let g:highlightedyank_highlight_duration = 150
 " vimtex {{{2
