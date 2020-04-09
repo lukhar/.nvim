@@ -305,18 +305,29 @@ let g:coc_global_extensions=['coc-json', 'coc-ultisnips', 'coc-python', 'coc-lis
 " navigation
 nnoremap <Leader>f :CocList --top files<CR>
 nnoremap <Leader>n :lcd $NOTES<CR>:CocList --top files<CR>
-nnoremap <Leader>e :CocList --top tags<CR>
+nnoremap <Leader>e :CocList --top -I symbols<CR>
+nnoremap <Leader>E :CocList --top tags<CR>
 nnoremap <Leader>w :CocList --top windows<CR>
 nnoremap <Leader>b :CocList --top buffers<CR>
 nnoremap <Leader>a :CocList --top lists<CR>
+nnoremap <Leader>D :CocList --top diagnostics<CR>
 nnoremap <Leader>s :CocList --top grep<space>
 
+" list navigatation
+nmap ]z :<C-u>CocNext<CR>
+nmap [z :<C-u>CocPrev<CR>
+
+" diagnostics navigatation
+nmap ]g <Plug>(coc-diagnostic-next)
+nmap [g <Plug>(coc-diagnostic-prev)
 
 " remap keys for gotos
 nmap <silent> gi <Plug>(coc-definition)
+nmap <silent> gI <Plug>(coc-type-definition)
 nmap <silent> gy <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gF <Plug>(coc-format)
+nmap <silent> gA <Plug>(coc-codeaction)
 
 nmap <leader>rn <Plug>(coc-rename)
 
