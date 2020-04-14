@@ -44,6 +44,7 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
 Plug 'lervag/vimtex'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'jparise/vim-graphql'
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 call plug#end()
