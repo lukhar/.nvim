@@ -400,6 +400,7 @@ let g:vista#echo_cursor = 0
 nnoremap <silent> <F9> :Vista<CR>
 " nertw {{{2
 let g:netrw_liststyle = 3
+let g:netrw_localrmdir='rm -r'
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
