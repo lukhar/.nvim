@@ -4,6 +4,7 @@
   "python.trace.server": "verbose",
 
   "coc.source.word.priority": -200,
+  "suggest.noselect": false,
 
   "list.source.grep.command": "rg",
   "list.maxHeight": 50,
