@@ -1,7 +1,11 @@
 " vim: foldmethod=marker
+
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
+if has('mac')
+Plug 'SirVer/ultisnips'
+endif
 Plug 'airblade/vim-gitgutter'
 Plug 'bigbrozer/vim-nagios'
 Plug 'chrisbra/vim-diff-enhanced'
@@ -39,7 +43,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/matchit.zip'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-reload'
 Plug 'lervag/vimtex'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
