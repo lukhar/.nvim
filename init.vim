@@ -314,7 +314,18 @@ nnoremap <Leader>w :CocList --top windows<CR>
 nnoremap <Leader>b :CocList --top buffers<CR>
 nnoremap <Leader>a :CocList --top lists<CR>
 nnoremap <Leader>D :CocList --top diagnostics<CR>
-nnoremap <Leader>s :CocList --top grep<space>
+
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>s :exe 'CocList --top -I --input='.expand('<cword>').' grep'<CR>
 
 " list navigatation
 nmap ]z :<C-u>CocNext<CR>
