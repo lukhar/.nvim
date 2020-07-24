@@ -8,9 +8,9 @@ endfunction
 
 com! -buffer FormatSource :call ScalafmtFormat()
 
-" use jellybeans color scheme
-colorscheme jellybeans
-let g:airline_theme='dark'
+" " use jellybeans color scheme
+" colorscheme jellybeans
+" let g:airline_theme='dark'
 
 " scala formatter
 set formatexpr=call\ ScalafmtFormat()
