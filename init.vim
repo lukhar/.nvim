@@ -20,6 +20,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'itchyny/lightline.vim' | Plug 'mengelbrecht/lightline-bufferline'
 Plug 'junegunn/vim-slash'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
+Plug 'lambdalisue/fern.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/vista.vim'
 Plug 'lsdr/monokai'
@@ -41,7 +42,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/groovyindent-unix'
 Plug 'vim-scripts/matchit.zip'
@@ -408,6 +408,7 @@ let g:pandoc#syntax#codeblocks#embeds#langs = ['java', 'python', 'bash=sh', 'sql
 " highlightedyank {{{2
 let g:highlightedyank_highlight_duration = 150
 " vimtex {{{2
+let g:tex_flavor = 'latex'
 if has('unix')
   if has('mac')
     let g:vimtex_view_method = 'skim'
@@ -422,6 +423,19 @@ nnoremap <silent> <F9> :Vista<CR>
 " nertw {{{2
 let g:netrw_liststyle = 3
 let g:netrw_localrmdir='rm -r'
+" fern {{{2
+nnoremap - :Fern . -reveal=%<CR>
+nnoremap _ :Fern . -drawer -toggle -reveal=%<CR>
+
+function! s:init_fern() abort
+  nmap <buffer><expr> l fern#smart#leaf('<Plug>(fern-action-open)', '<Plug>(fern-action-expand)', '<Plug>(fern-action-collapse)')
+endfunction
+
+augroup my-fern
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
