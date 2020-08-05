@@ -423,17 +423,41 @@ nnoremap <silent> <F9> :Vista<CR>
 " nertw {{{2
 let g:netrw_liststyle = 3
 let g:netrw_localrmdir='rm -r'
+
+" Disable netrw (for fern)
+let g:loaded_netrw             = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
 " fern {{{2
 nnoremap - :Fern . -reveal=%<CR>
 nnoremap _ :Fern . -drawer -toggle -reveal=%<CR>
 
 function! s:init_fern() abort
-  nmap <buffer><expr> l fern#smart#leaf('<Plug>(fern-action-open)', '<Plug>(fern-action-expand)', '<Plug>(fern-action-collapse)')
+  nmap <buffer><expr>
+      \ <Plug>(fern-my-expand-or-collapse)
+      \ fern#smart#leaf(
+      \   "\<Plug>(fern-action-collapse)",
+      \   "\<Plug>(fern-action-expand)",
+      \   "\<Plug>(fern-action-collapse)",
+      \ )
+
+  nmap <buffer><nowait> l <Plug>(fern-my-expand-or-collapse)
+endfunction
+
+function! s:hijack_directory() abort
+  let path = expand('%:p')
+  if !isdirectory(path)
+    return
+  endif
+  bwipeout %
+  execute printf('Fern %s', fnameescape(path))
 endfunction
 
 augroup my-fern
   autocmd! *
   autocmd FileType fern call s:init_fern()
+  autocmd BufEnter * ++nested call s:hijack_directory()
 augroup END
 
 " scripts {{{1
