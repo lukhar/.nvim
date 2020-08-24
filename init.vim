@@ -60,7 +60,7 @@ set inccommand=nosplit
 
 "properties {{{2
 " set powerline Fonts
-if has("gui_running")
+if has("gui_running") &&  ! has('mac')
     "set guifont=DejaVu\ Sans\ Mono\ 10
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
