@@ -461,6 +461,10 @@ augroup my-fern
   autocmd BufEnter * ++nested call s:hijack_directory()
 augroup END
 
+" fixcursorhold {{{2
+" in millisecond, used for both CursorHold and CursorHoldI,
+" use updatetime instead if not defined
+let g:cursorhold_updatetime = 100
 " scripts {{{1
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
