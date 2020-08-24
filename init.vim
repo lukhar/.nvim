@@ -7,6 +7,7 @@ if has('mac')
 Plug 'SirVer/ultisnips'
 endif
 Plug 'airblade/vim-gitgutter'
+Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'bigbrozer/vim-nagios'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'cespare/vim-toml'
