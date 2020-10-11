@@ -3,11 +3,10 @@
   "python.jediEnabled": true,
   "python.trace.server": "verbose",
 
-  "coc.source.word.priority": -200,
   "suggest.noselect": false,
 
+  "list.height": 50,
   "list.source.grep.command": "rg",
-  "list.maxHeight": 50,
   "list.source.helptags.defaultOptions": ["--top"],
   "list.source.extensions.defaultOptions": ["--top"],
   "list.source.commands.defaultOptions": ["--top"],
@@ -23,7 +22,6 @@
   "list.source.links.defaultOptions": ["--top"],
   "list.source.location.defaultOptions": ["--top"],
   "list.source.services.defaultOptions": ["--top"],
-  "list.source.output.defaultOptions": ["--top"],
   "list.source.cmdhistory.defaultOptions": ["--top"],
   "list.source.maps.defaultOptions": ["--top"],
   "list.source.colors.defaultOptions": ["--top"],
@@ -40,6 +38,5 @@
   },
 
   "diagnostic.warningSign": ">",
-  "diagnostic.errorSign": ">>",
-  "java.errors.incompleteClasspath.severity": "ignore"
+  "diagnostic.errorSign": ">>"
 }
