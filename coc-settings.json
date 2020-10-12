@@ -5,6 +5,8 @@
 
   "suggest.noselect": false,
 
+  "coc.preferences.floatQuickpick": false,
+
   "list.height": 50,
   "list.source.grep.command": "rg",
   "list.source.helptags.defaultOptions": ["--top"],
