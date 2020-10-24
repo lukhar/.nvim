@@ -431,8 +431,8 @@ let g:loaded_netrwPlugin       = 1
 let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
 " fern {{{2
-nnoremap - :Fern . -reveal=%<CR>
-nnoremap _ :Fern . -drawer -toggle -reveal=%<CR>
+nnoremap - :Fern %:h -reveal=%<CR>
+nnoremap _ :Fern %:h -drawer -toggle -reveal=%<CR>
 
 function! s:init_fern() abort
   nmap <buffer><expr>
