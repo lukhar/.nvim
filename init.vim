@@ -3,9 +3,6 @@
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
-if has('mac')
-Plug 'SirVer/ultisnips'
-endif
 Plug 'airblade/vim-gitgutter'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'bigbrozer/vim-nagios'
@@ -306,7 +303,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 silent! call togglebg#map("<F10>")
 " coc.vim {{{2
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions=['coc-json', 'coc-ultisnips', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals', 'coc-tsserver']
+let g:coc_global_extensions=['coc-json', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals', 'coc-tsserver', 'coc-snippets']
 
 " navigation
 nnoremap <Leader>f :CocList --top files<CR>
