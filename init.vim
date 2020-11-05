@@ -172,8 +172,8 @@ nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>cp :Glcd<CR>:pwd<CR>
 
 " source current line or visual selection
-vnoremap <Leader>S y:execute @@<CR>:echo 'Sourced selection.'<CR>
-nnoremap <Leader>S ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
+vnoremap <Leader>So y:execute @@<CR>:echo 'Sourced selection.'<CR>
+nnoremap <Leader>So ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
 " more vim-like behavior
 nnoremap Y y$
@@ -316,7 +316,7 @@ nnoremap <Leader>a :CocList --top lists<CR>
 nnoremap <Leader>D :CocList --top diagnostics<CR>
 
 " grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList --top grep '.<q-args>
 
 function! s:GrepArgs(...)
   let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
@@ -326,6 +326,7 @@ endfunction
 
 " Keymapping for grep word under cursor with interactive mode
 nnoremap <silent> <Leader>s :exe 'CocList --top -I --input='.expand('<cword>').' grep'<CR>
+nnoremap <silent> <Leader>S :exe 'Rg '.expand('<cword>')<CR>
 
 " list navigatation
 nmap ]z :<C-u>CocNext<CR>
