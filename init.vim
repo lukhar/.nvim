@@ -30,6 +30,7 @@ Plug 'othree/xml.vim'
 Plug 'vim-python/python-syntax'
 Plug 'rodjek/vim-puppet'
 Plug 'tfnico/vim-gradle'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch' | Plug 'radenling/vim-dispatch-neovim'
@@ -488,10 +489,22 @@ hi InactiveWindow guibg=#073642
 " Call method on window enter
 augroup WindowManagement
   autocmd!
-  autocmd WinEnter * call Handle_Win_Enter()
+  autocmd WinEnter * call HandleWinEnter()
+  autocmd FocusLost * call FocusLostInactive()
+  autocmd FocusGained * call FocusGainedActive()
 augroup END
 
 " Change highlight group of active/inactive windows
-function! Handle_Win_Enter()
+function! HandleWinEnter()
+  setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+endfunction
+
+" Change color when focus lost
+function! FocusLostInactive()
+  setlocal winhighlight=Normal:InactiveWindow,NormalNC:InactiveWindow
+endfunction
+
+" Change color when focus gained
+function! FocusGainedActive()
   setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endfunction
