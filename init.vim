@@ -134,8 +134,8 @@ set ttyfast
 
 " retain screen position when switching the buffers
 if v:version >= 700
-  au BufLeave * let b:winview = winsaveview()
-  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+  autocmd BufLeave * let b:winview = winsaveview()
+  autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 endif
 
 " automatically remove trailing whitespace characters on save
@@ -161,7 +161,7 @@ let mapleader=" "
 cmap w!! w !sudo tee > /dev/null %
 
 " open file in the same dir
-cmap eW e <C-R>=expand("%:p:h") . "/" <CR>
+cmap ee e <C-R>=expand("%:p:h") . "/" <CR>
 
 " remove trailing spaces
 nmap _$ :%s/\v\s+$//e<CR>
@@ -179,8 +179,9 @@ nnoremap <Leader>So ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 " more vim-like behavior
 nnoremap Y y$
 
-" map jk to esc experimental
+" map jk/kj to esc experimental
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 " Maps Alt-[h,j,k,l] to resizing a window split
 map <silent> <A-h> <C-w>2<
@@ -214,8 +215,8 @@ let g:rerraform_fmt_on_save=1
 "delimitMate {{{2
 let b:delimitMate_expand_space = 1
 let b:delimitMate_expand_cr = 2
-au FileType htm,html let b:delimitMate_matchpairs = '(:),[:],{:}'
-au FileType vim let b:delimitMate_quotes = "'"
+autocmd FileType htm,html let b:delimitMate_matchpairs = '(:),[:],{:}'
+autocmd FileType vim let b:delimitMate_quotes = "'"
 "{{{ unimpaired
 " Bubble single lines
 nmap <C-Up> [e
