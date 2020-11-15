@@ -1,5 +1,3 @@
-" vim: foldmethod=marker
-
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
@@ -59,13 +57,13 @@ set inccommand=nosplit
 "properties {{{2
 " set powerline Fonts
 if has("gui_running") &&  ! has('mac')
-    "set guifont=DejaVu\ Sans\ Mono\ 10
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-    "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
-    "set guifont=Liberation\ Mono\ for\ Powerline\,Literation\ Mono\ Powerline\ 10
-    "set guifont=Anonymous\ Pro\ for\ Powerline\,Anonymice\ Powerline\ 12
-    "set guifont=Inconsolata\ for\ Powerline\ 12
-    "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+  "set guifont=DejaVu\ Sans\ Mono\ 10
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+  "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
+  "set guifont=Liberation\ Mono\ for\ Powerline\,Literation\ Mono\ Powerline\ 10
+  "set guifont=Anonymous\ Pro\ for\ Powerline\,Anonymice\ Powerline\ 12
+  "set guifont=Inconsolata\ for\ Powerline\ 12
+  "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 endif
 
 set tabstop=4
@@ -147,11 +145,11 @@ let g:python3_host_prog = '~/.pyenv/versions/neovim/bin/python'
 
 " wildmenu {{{2
 if has("wildmenu")
-    set wildignore+=*.a,*.o,*.pyc
-    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-    set wildignore+=*~,*.swp,*.tmp
-    set wildmenu
-    set wildmode=longest:full,full " command <Tab> completion, list matches, then longest common part, then all.
+  set wildignore+=*.a,*.o,*.pyc
+  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+  set wildignore+=*~,*.swp,*.tmp
+  set wildmenu
+  set wildmode=longest:full,full " command <Tab> completion, list matches, then longest common part, then all.
 endif"}}}
 " mappings {{{2
 " set <Leader> to <space> instead of \
@@ -199,8 +197,8 @@ if executable('ag')
 endif
 
 if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 "plugin settings {{{1
@@ -236,15 +234,15 @@ let g:ultisnips_python_style="sphinx"
 
 
 if !exists("g:snips_author")
-    let g:snips_author = "yourname"
+  let g:snips_author = "yourname"
 endif
 
 if !exists("g:snips_email")
-    let g:snips_email = "yourname@email.com"
+  let g:snips_email = "yourname@email.com"
 endif
 
 if !exists("g:snips_github")
-    let g:snips_github = "https://github.com/yourname"
+  let g:snips_github = "https://github.com/yourname"
 endif
 "lightline {{{2
 set showtabline=2
@@ -281,7 +279,7 @@ function! LightLineFilename()
 endfunction
 
 function! LightlineObsession()
-    return '%{ObsessionStatus()}'
+  return '%{ObsessionStatus()}'
 endfunction
 "tmux-navigator {{{2
 augroup navigator
@@ -476,6 +474,7 @@ augroup END
 " use updatetime instead if not defined
 let g:cursorhold_updatetime = 100
 " scripts {{{1
+" execute macros over visual range {{{2
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 function! ExecuteMacroOverVisualRange()
@@ -483,6 +482,7 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
+" dim inactive panes {{{2
 " Background colors for active vs inactive windows
 hi ActiveWindow guibg=None
 hi InactiveWindow guibg=#073642
@@ -509,3 +509,16 @@ endfunction
 function! FocusGainedActive()
   setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endfunction
+
+" manage git project sessions {{{2
+augroup SessionManagment
+  autocmd VimEnter * call OpenSession()
+augroup END
+
+function! OpenSession()
+  if isdirectory(".git")
+    execute ":Mkdir! .vim"
+    execute ":Obsession .vim/session.vim"
+  end
+endfunction
+" vim: foldmethod=marker tabstop=2 shiftwidth=2 expandtab
