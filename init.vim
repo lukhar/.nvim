@@ -95,6 +95,8 @@ set nobackup
 set nowritebackup
 set path+=**                    " easier find (no **/ necessary)
 set splitright                  " split on the right side of current pane
+set spellsuggest+=10            " limit spell suggestions to 10
+
 
 " 'smart' realtive line numbers
 set relativenumber
@@ -303,7 +305,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 silent! call togglebg#map("<F10>")
 " coc.vim {{{2
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions=['coc-json', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals', 'coc-tsserver', 'coc-snippets']
+let g:coc_global_extensions=['coc-json', 'coc-python', 'coc-lists', 'coc-yaml', 'coc-metals', 'coc-tsserver', 'coc-snippets', 'coc-vimlsp']
 
 " navigation
 nnoremap <Leader>f :CocList --top files<CR>
