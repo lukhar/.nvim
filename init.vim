@@ -95,7 +95,6 @@ set nobackup
 set nowritebackup
 set path+=**                    " easier find (no **/ necessary)
 set splitright                  " split on the right side of current pane
-set spellsuggest+=10            " limit spell suggestions to 10
 
 
 " 'smart' realtive line numbers
