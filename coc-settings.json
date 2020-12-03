@@ -40,5 +40,6 @@
   "diagnostic.warningSign": ">",
   "diagnostic.errorSign": ">>",
   
-  "snippets.userSnippetsDirectory": "~/.config/nvim/mysnippets"
+  "snippets.userSnippetsDirectory": "~/.config/nvim/mysnippets",
+  "snippets.loadFromExtensions": false 
 }
