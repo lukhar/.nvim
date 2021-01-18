@@ -422,6 +422,8 @@ let g:pandoc#syntax#codeblocks#embeds#langs = ['java', 'python', 'bash=sh', 'sql
 let g:highlightedyank_highlight_duration = 150
 " vimtex {{{2
 let g:tex_flavor = 'latex'
+let g:vimtex_format_enabled = 1
+let g:vimtex_fold_enabled = 1
 if has('unix')
   if has('mac')
     let g:vimtex_view_method = 'skim'
