@@ -111,7 +111,7 @@ def __unicode__(self):
 	${3:pass}
 endsnippet
 
-snippet def "function or class method"
+snippet def "function or method"
 def ${1:function}(`!p 
 if snip.indent:
 	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
@@ -130,6 +130,14 @@ snippet defs "static method" b
 @staticmethod
 def ${1:function}(${2:arg1}):
 	${3:${VISUAL:pass}}
+endsnippet
+
+snippet tpdef "parametrized test function or method"
+@pytest.mark.parametrize("", [()])
+def ${1:function}(`!p 
+if snip.indent:
+	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
+	${0:${VISUAL:pass}}
 endsnippet
 
 # doesn't expand when there is a word in front
