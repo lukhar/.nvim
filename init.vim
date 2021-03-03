@@ -478,6 +478,8 @@ augroup END
 " in millisecond, used for both CursorHold and CursorHoldI,
 " use updatetime instead if not defined
 let g:cursorhold_updatetime = 100
+" fugitive {{{2
+let g:fugitive_git_executable = 'hub'
 " scripts {{{1
 " execute macros over visual range {{{2
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
