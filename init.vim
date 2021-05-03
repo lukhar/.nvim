@@ -50,14 +50,18 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 "preferred editor setup {{{1
+" neovide specfic settings {{{2
+let g:neovide_cursor_animation_length=0
+let g:neovide_cursor_trail_length=0
+
 " nvim specfic settings {{{2
 set inccommand=nosplit
 
 "properties {{{2
 " set powerline Fonts
 if has("gui_running") &&  ! has('mac')
-  "set guifont=DejaVu\ Sans\ Mono\ 10
-  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+  set guifont=DejaVu\ Sans\ Mono\ 10
+  "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
   "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
   "set guifont=Liberation\ Mono\ for\ Powerline\,Literation\ Mono\ Powerline\ 10
   "set guifont=Anonymous\ Pro\ for\ Powerline\,Anonymice\ Powerline\ 12
@@ -528,4 +532,4 @@ function! OpenSession()
     execute ":Obsession .vim/session.vim"
   end
 endfunction
-" vim: foldmethod=marker tabstop=2 shiftwidth=2 expandtab
+" vim: foldmethod=marker tabstop=2 shiftwidth=2 expandtabLiberation\ Mono\ 10
