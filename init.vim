@@ -461,6 +461,7 @@ function! s:init_fern() abort
       \ )
 
   nmap <buffer><nowait> l <Plug>(fern-my-expand-or-collapse)
+  nmap <buffer><nowait> r <Plug>(fern-action-reload)
 endfunction
 
 function! s:hijack_directory() abort
