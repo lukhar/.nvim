@@ -354,6 +354,9 @@ nmap <silent> gA <Plug>(coc-codeaction)
 
 nmap <leader>rn <Plug>(coc-rename)
 
+" ugly fix for solarized unsued color
+highlight! CocFadeOut guifg=#586e75
+
 " text objects
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
