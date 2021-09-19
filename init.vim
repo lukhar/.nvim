@@ -540,4 +540,4 @@ function! OpenSession()
     execute ":Obsession .vim/session.vim"
   end
 endfunction
-" vim: foldmethod=marker tabstop=2 shiftwidth=2 expandtabLiberation\ Mono\ 10
+" vim: foldmethod=marker tabstop=2 shiftwidth=2 expandtab
