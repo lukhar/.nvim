@@ -405,7 +405,7 @@ let g:localvimrc_sandbox = 0
 " pandoc {{{2
 let g:pandoc#folding#fdc = 0
 let g:pandoc#spell#default_langs = ['en', 'pl']
-let g:pandoc#syntax#codeblocks#embeds#langs = ['java', 'python', 'bash=sh', 'sql', 'groovy']
+let g:pandoc#syntax#codeblocks#embeds#langs = ['python', 'sql', 'sh=bash']
 " gutentags {{{2
 " let g:gutentags_cache_dir = expand('~/.cache/vim/gutentags')
 " let g:gutentags_file_list_command = 'rg --files'
