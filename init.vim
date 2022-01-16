@@ -296,6 +296,14 @@ lua << EOF
         opts.before_init = function(_, config)
           config.settings.python.pythonPath = python_path()
         end
+
+        opts.settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "off",
+            }
+          }
+        }
       end
 
       if server.name == "sumneko_lua" then
