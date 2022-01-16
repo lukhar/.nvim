@@ -274,8 +274,8 @@ lua << EOF
       buf_map(bufnr, "n", "gr", ":LspRefs<CR>")
       buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
       buf_map(bufnr, "n", "K", ":LspHover<CR>")
-      buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
-      buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
+      buf_map(bufnr, "n", "[g", ":LspDiagPrev<CR>")
+      buf_map(bufnr, "n", "]g", ":LspDiagNext<CR>")
       buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
       buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
       buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
@@ -290,18 +290,33 @@ lua << EOF
   -- Register a handler that will be called for all installed servers.
   -- Alternatively, you may also register handlers on specific server instances instead (see example below).
   lsp_installer.on_server_ready(function(server)
-      local opts = {}
-      opts.on_attach = on_attach
-
-      -- (optional) Customize the options passed to the server
-      -- if server.name == "tsserver" then
-      --     opts.root_dir = function() ... end
-      -- end
+      local opts = { on_attach = on_attach }
 
       if server.name == "pyright" then
         opts.before_init = function(_, config)
           config.settings.python.pythonPath = python_path()
         end
+      end
+
+      if server.name == "sumneko_lua" then
+        opts.settings = {
+            Lua = {
+              diagnostics = {
+                enable = true,
+                globals = {'vim', 'describe', 'awesome', 'client', 'screen', 'root'},
+                disable = {"lowercase-global"}
+              },
+              workspace = {
+                library = {
+                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+                        [vim.fn.expand('/usr/share/awesome/lib')] = true
+                },
+                maxPreload = 2000,
+                preloadFileSize = 2000
+              }
+            }
+          }
       end
 
       -- This setup() function is exactly the same as lspconfig's setup function.
