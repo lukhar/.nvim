@@ -1,5 +1,11 @@
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'bigbrozer/vim-nagios'
@@ -46,7 +52,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 "preferred editor setup {{{1
@@ -102,6 +107,7 @@ set nobackup
 set nowritebackup
 set path+=**                    " easier find (no **/ necessary)
 set splitright                  " split on the right side of current pane
+set noswapfile
 
 
 " 'smart' realtive line numbers
@@ -210,6 +216,100 @@ if executable("rg")
 endif
 
 "plugin settings {{{1
+" fzf {{{2
+nnoremap <Leader>r :GFiles<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>n :Files $NOTES<CR>
+nnoremap <Leader>e :Tags<CR>
+nnoremap <Leader>w :Windows<CR>
+nnoremap <Leader>E :BTags<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>s :Rg<space>
+nnoremap <Leader>S :Rg<CR>
+
+" coq {{{2
+let g:coq_settings = {
+      \ 'display.icons.mode': 'none',
+      \ 'auto_start': 'shut-up',
+      \ 'keymap.pre_select': v:false,
+      \ 'keymap.bigger_preview': '',
+      \ 'keymap.jump_to_mark': '',
+      \ 'clients.snippets.warn': {}
+      \ }
+
+" lsp {{{2
+lua << EOF
+  local lspconfig = require("lspconfig")
+
+  local buf_map = function(bufnr, mode, lhs, rhs, opts)
+      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+          silent = true,
+      })
+  end
+
+  local function python_path()
+    if vim.env.VIRTUAL_ENV then
+      return lspconfig.util.path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+    end
+
+    return exepath('python3') or exepath('python') or 'python'
+  end
+
+  local on_attach = function(client, bufnr)
+      vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
+      vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+      vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
+      vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
+      vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
+      vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
+      vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
+      vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
+      vim.cmd("command! LspDiagPrev lua vim.diagnostic.goto_prev()")
+      vim.cmd("command! LspDiagNext lua vim.diagnostic.goto_next()")
+      vim.cmd("command! LspDiagLine lua vim.diagnostic.open_float()")
+      vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
+
+      buf_map(bufnr, "n", "gi", ":LspDef<CR>")
+      buf_map(bufnr, "n", "gI", ":LspTypeDef<CR>")
+      buf_map(bufnr, "n", "gr", ":LspRefs<CR>")
+      buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
+      buf_map(bufnr, "n", "K", ":LspHover<CR>")
+      buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
+      buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
+      buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
+      buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
+      buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
+
+      if client.resolved_capabilities.document_formatting then
+          vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+      end
+  end
+
+  local lsp_installer = require("nvim-lsp-installer")
+
+  -- Register a handler that will be called for all installed servers.
+  -- Alternatively, you may also register handlers on specific server instances instead (see example below).
+  lsp_installer.on_server_ready(function(server)
+      local opts = {}
+      opts.on_attach = on_attach
+
+      -- (optional) Customize the options passed to the server
+      -- if server.name == "tsserver" then
+      --     opts.root_dir = function() ... end
+      -- end
+
+      if server.name == "pyright" then
+        opts.before_init = function(_, config)
+          config.settings.python.pythonPath = python_path()
+        end
+      end
+
+      -- This setup() function is exactly the same as lspconfig's setup function.
+      -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+      server:setup(opts)
+  end)
+EOF
+
 "python {{{2
 let g:python_highlight_all = 1
 "xml {{{2
@@ -289,6 +389,7 @@ endfunction
 function! LightlineObsession()
   return '%{ObsessionStatus()}'
 endfunction
+
 "tmux-navigator {{{2
 augroup navigator
   autocmd!
@@ -309,96 +410,6 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 " solarized {{{2
 silent! call togglebg#map("<F10>")
-" coc.vim {{{2
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions=['coc-json', 'coc-lists', 'coc-pyright', 'coc-yaml', 'coc-lua', 'coc-metals', 'coc-tsserver', 'coc-snippets', 'coc-vimlsp']
-
-" navigation
-nnoremap <Leader>f :CocList --top files<CR>
-nnoremap <Leader>n :lcd $NOTES<CR>:CocList --top files<CR>
-nnoremap <Leader>e :CocList --top -I symbols<CR>
-nnoremap <Leader>E :CocList --top tags<CR>
-nnoremap <Leader>w :CocList --top windows<CR>
-nnoremap <Leader>b :CocList --top buffers<CR>
-nnoremap <Leader>a :CocList --top lists<CR>
-nnoremap <Leader>D :CocList --top diagnostics<CR>
-
-" grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList --top grep '.<q-args>
-
-function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-  return join(list, "\n")
-endfunction
-
-" Keymapping for grep word under cursor with interactive mode
-nnoremap <silent> <Leader>s :exe 'CocList --top -I --input='.expand('<cword>').' grep'<CR>
-nnoremap <silent> <Leader>S :exe 'Rg '.expand('<cword>')<CR>
-
-" list navigatation
-nmap ]z :<C-u>CocNext<CR>
-nmap [z :<C-u>CocPrev<CR>
-
-" diagnostics navigatation
-nmap ]g <Plug>(coc-diagnostic-next)
-nmap [g <Plug>(coc-diagnostic-prev)
-
-" remap keys for gotos
-nmap <silent> gi <Plug>(coc-definition)
-nmap <silent> gI <Plug>(coc-type-definition)
-nmap <silent> gy <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gF <Plug>(coc-format)
-nmap <silent> gA <Plug>(coc-codeaction)
-
-nmap <leader>rn <Plug>(coc-rename)
-
-" ugly fix for solarized unsued color
-highlight! CocFadeOut guifg=#586e75
-
-" text objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-let g:coc_snippet_prev = '<s-tab>'
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
 " local-vimrc {{{2
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
