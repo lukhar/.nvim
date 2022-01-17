@@ -239,6 +239,9 @@ let g:coq_settings = {
 
 " lsp {{{2
 lua << EOF
+  -- uncomment for debugging
+  -- vim.lsp.set_log_level("debug")
+
   local lspconfig = require("lspconfig")
 
   local buf_map = function(bufnr, mode, lhs, rhs, opts)
@@ -278,6 +281,7 @@ lua << EOF
       buf_map(bufnr, "n", "]g", ":LspDiagNext<CR>")
       buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
       buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
+      buf_map(bufnr, "n", "<Leader>rn", ":LspRename<CR>")
       buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
 
       if client.resolved_capabilities.document_formatting then
@@ -298,11 +302,11 @@ lua << EOF
         end
 
         opts.settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = "off",
-            }
-          }
+           python = {
+             analysis = {
+               typeCheckingMode = "off"
+             }
+           }
         }
       end
 
