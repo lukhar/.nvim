@@ -229,6 +229,7 @@ nnoremap <Leader>S :Rg<CR>
 
 " coq {{{2
 let g:coq_settings = {
+      \ 'display.preview.border': ['', '', '', ' ', '', '', '', ' '],
       \ 'display.icons.mode': 'none',
       \ 'auto_start': 'shut-up',
       \ 'keymap.pre_select': v:false,
@@ -280,13 +281,15 @@ lua << EOF
       buf_map(bufnr, "n", "[g", ":LspDiagPrev<CR>")
       buf_map(bufnr, "n", "]g", ":LspDiagNext<CR>")
       buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
+      buf_map(bufnr, "n", "gF", ":LspFormatting<CR>")
       buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
       buf_map(bufnr, "n", "<Leader>rn", ":LspRename<CR>")
       buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
 
-      if client.resolved_capabilities.document_formatting then
-          vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-      end
+      -- uncomment autoformat on write
+      -- if client.resolved_capabilities.document_formatting then
+      --     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+      -- end
   end
 
   local lsp_installer = require("nvim-lsp-installer")
@@ -295,6 +298,22 @@ lua << EOF
   -- Alternatively, you may also register handlers on specific server instances instead (see example below).
   lsp_installer.on_server_ready(function(server)
       local opts = { on_attach = on_attach }
+
+      if server.name == "efm" then
+        opts.init_options = {
+          documentFormatting = true
+        }
+
+        opts.settings = {
+          rootMarkers = {".git/"},
+          languages = {
+            python = {
+              { formatCommand = "isort --profile=black --quiet -", formatStdin = true },
+              { formatCommand = "black --quiet -", formatStdin = true }
+            }
+          }
+        }
+      end
 
       if server.name == "pyright" then
         opts.before_init = function(_, config)
@@ -315,14 +334,14 @@ lua << EOF
             Lua = {
               diagnostics = {
                 enable = true,
-                globals = {'vim', 'describe', 'awesome', 'client', 'screen', 'root'},
-                disable = {"lowercase-global"}
+                globals = { "vim", "describe", "awesome", "client", "screen", "root" },
+                disable = { "lowercase-global" }
               },
               workspace = {
                 library = {
-                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                        [vim.fn.expand('/usr/share/awesome/lib')] = true
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                        [vim.fn.expand("/usr/share/awesome/lib")] = true
                 },
                 maxPreload = 2000,
                 preloadFileSize = 2000
