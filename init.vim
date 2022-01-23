@@ -11,7 +11,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'onsails/lspkind-nvim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
@@ -237,7 +236,6 @@ nnoremap <Leader>S :Rg<CR>
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require("cmp")
-  local lspkind = require('lspkind')
 
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -249,13 +247,6 @@ lua <<EOF
   end
 
   cmp.setup({
-    formatting = {
-      format = lspkind.cmp_format({
-        with_text = true, -- do not show text alongside icons
-        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      })
-
-    },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
