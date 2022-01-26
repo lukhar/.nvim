@@ -220,6 +220,17 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+"floating windows {{{2
+lua <<EOF
+  local win = require("lspconfig.ui.windows")
+  local _default_opts = win.default_opts
+
+  win.default_opts = function(options)
+    local opts = _default_opts(options)
+    opts.border = "single"
+    return opts
+  end
+EOF
 "plugin settings {{{1
 " fzf {{{2
 nnoremap <Leader>r :GFiles<CR>
