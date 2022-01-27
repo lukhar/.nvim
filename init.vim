@@ -400,7 +400,11 @@ lua << EOF
           languages = {
             python = {
               { formatCommand = "isort --profile=black --quiet -", formatStdin = true },
-              { formatCommand = "black --quiet -", formatStdin = true }
+              { formatCommand = "black --quiet -", formatStdin = true },
+              { lintCommand = "flake8 --stdin-display-name ${INPUT} -",
+                lintStdin = true,
+                lintIgnoreExitCode = true,
+                lintFormats = {"%f:%l:%c: %m"} }
             }
           }
         }
