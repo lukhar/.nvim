@@ -482,7 +482,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
-      \   'right': [ [ 'lineinfo', 'cocstatus'],
+      \   'right': [ [ 'lineinfo'],
       \            [ 'percent'],
       \            [ 'obsession', 'fileformat', 'fileencoding'] ],
       \ },
@@ -490,7 +490,6 @@ let g:lightline = {
       \   'filename': 'LightLineFilename',
       \   'obsession': 'LightlineObsession',
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers',
