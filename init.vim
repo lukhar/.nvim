@@ -4,6 +4,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -36,7 +37,6 @@ Plug 'mattn/emmet-vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'nanotech/jellybeans.vim'
 Plug 'othree/xml.vim'
-Plug 'vim-python/python-syntax'
 Plug 'rodjek/vim-puppet'
 Plug 'tfnico/vim-gradle'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -434,8 +434,34 @@ lua << EOF
   end)
 EOF
 
-"python {{{2
-let g:python_highlight_all = 1
+"tree-sitter {{{2
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {"python", "rust", "java", "go", "scala", "lua", "toml", "yaml", "typescript"},
+
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing
+  -- ignore_install = { "javascript" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    -- disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
 "xml {{{2
 let xml_use_xhtml = 1           " enable plugin when editing html files
 "terraform-vim {{{2
