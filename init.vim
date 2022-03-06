@@ -169,7 +169,7 @@ if has("wildmenu")
   set wildignore+=*~,*.swp,*.tmp
   set wildmenu
   set wildmode=longest:full,full " command <Tab> completion, list matches, then longest common part, then all.
-endif"}}}
+endif
 " mappings {{{2
 " set <Leader> to <space> instead of \
 let mapleader=" "
@@ -299,6 +299,9 @@ lua <<EOF
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+    mapping = {
+      ['<Tab>'] = cmp.config.disable,
+    },
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
