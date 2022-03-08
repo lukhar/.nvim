@@ -79,6 +79,10 @@ if has("gui_running") &&  ! has('mac')
   "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 endif
 
+if !exists("$NOTES")
+  let $NOTES="/home/lukhar/documents/shared/notes/"
+endif
+
 if has("gui_vimr")
   let $NOTES="/Users/lharatym/documents/shared/notes"
 endif
