@@ -224,6 +224,12 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+" file opening through partial matching (nested in directories or over path)
+nnoremap ;e :e **/*
+nnoremap ;f :find **/*
+cmap ee e **/*
+cmap ff find **/*
+
 "floating windows {{{2
 lua <<EOF
   local win = require("lspconfig.ui.windows")
