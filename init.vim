@@ -184,9 +184,6 @@ cmap w!! w !sudo tee > /dev/null %
 " open file in the same dir
 cmap Ee e <C-R>=expand("%:p:h") . "/" <CR>
 
-" remove trailing spaces
-nmap _$ :%s/\v\s+$//e<CR>
-
 " Set current working directory to current file
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
