@@ -283,39 +283,39 @@ lua <<EOF
           cmp.select_prev_item()
         end
       end, { "i", "s" }),
-      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
+      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources({
-      { name = 'nvim_lsp' }
+      { name = "nvim_lsp" }
     }, {
-      { name = 'buffer' },
+      { name = "buffer" },
     })
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline("/", {
     sources = {
-      { name = 'buffer' }
+      { name = "buffer" }
     }
   })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline(":", {
     mapping = {
-      ['<Tab>'] = cmp.config.disable,
+      ["<Tab>"] = cmp.config.disable,
     },
     sources = cmp.config.sources({
-      { name = 'path' }
+      { name = "path" }
     }, {
-      { name = 'cmdline' }
+      { name = "cmdline" }
     })
   })
 EOF
@@ -335,10 +335,10 @@ lua << EOF
 
   local function python_path()
     if vim.env.VIRTUAL_ENV then
-      return lspconfig.util.path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+      return lspconfig.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python")
     end
 
-    return exepath('python3') or exepath('python') or 'python'
+    return exepath("python3") or exepath("python") or "python"
   end
 
   local on_attach = function(client, bufnr)
@@ -379,7 +379,7 @@ lua << EOF
   -- Register a handler that will be called for all installed servers.
   -- Alternatively, you may also register handlers on specific server instances instead (see example below).
   lsp_installer.on_server_ready(function(server)
-      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       local opts = {
         on_attach = on_attach,
