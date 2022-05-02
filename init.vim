@@ -191,8 +191,8 @@ nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>cp :Glcd<CR>:pwd<CR>
 
 " source current line or visual selection
-vnoremap <Leader>So y:execute @@<CR>:echo 'Sourced selection.'<CR>
-nnoremap <Leader>So ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
+" vnoremap <Leader>So y:execute @@<CR>:echo 'Sourced selection.'<CR>
+" nnoremap <Leader>So ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
 " more vim-like behavior
 nnoremap Y y$
