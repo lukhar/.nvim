@@ -181,9 +181,6 @@ let mapleader=" "
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" open file in the same dir
-cmap Ee e <C-R>=expand("%:p:h") . "/" <CR>
-
 " Set current working directory to current file
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
@@ -224,8 +221,8 @@ endif
 " file opening through partial matching (nested in directories or over path)
 nnoremap ;e :e **/*
 nnoremap ;f :find **/*
-cmap ee e **/*
-cmap ff find **/*
+cmap eE e **/*
+cmap fF find **/*
 
 "floating windows {{{2
 lua <<EOF
