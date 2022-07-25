@@ -62,14 +62,16 @@ call plug#end()
 
 "preferred editor setup {{{1
 " neovide specfic settings {{{2
-let g:neovide_cursor_animation_length=0
-let g:neovide_cursor_trail_length=0
+if exists("g:neovide")
+  let g:neovide_cursor_animation_length=0
+  let g:neovide_cursor_trail_length=0
+endif
 " nvim specfic settings {{{2
 set inccommand=nosplit
 
 "properties {{{2
 " set powerline Fonts
-if has("gui_running") &&  ! has('mac')
+if has("gui_running") &&  ! has("mac")
   set guifont=DejaVu\ Sans\ Mono\ 10
   "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
   "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10
@@ -83,8 +85,9 @@ if !exists("$NOTES")
   let $NOTES="/home/lukhar/documents/shared/notes/"
 endif
 
-if has("gui_vimr")
+if has("mac")
   let $NOTES="/Users/lharatym/documents/shared/notes"
+  set guifont=Droid\ Sans\ Mono\ Dotted\ for\ Powerline:h15
 endif
 
 set tabstop=4
