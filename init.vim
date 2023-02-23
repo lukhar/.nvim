@@ -417,7 +417,7 @@ lua << EOF
         }
       end
 
-      if server.name == "sumneko_lua" then
+      if server.name == "lua_ls" then
         opts.settings = {
             Lua = {
               diagnostics = {
@@ -574,7 +574,7 @@ let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
 " pandoc {{{2
 let g:pandoc#folding#fdc = 0
-let g:pandoc#spell#default_langs = ['en', 'pl']
+let g:pandoc#spell#default_langs = ['en']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['python', 'sql', 'sh=bash']
 " gutentags {{{2
 " let g:gutentags_cache_dir = expand('~/.cache/vim/gutentags')
