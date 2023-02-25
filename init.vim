@@ -396,10 +396,9 @@ lua << EOF
 
         settings = {
           python = {
-            pythonPath="",
             analysis = {
               -- Disable strict type checking
-              typeCheckingMode = "off"
+              -- typeCheckingMode = "off"
             }
           }
         },
