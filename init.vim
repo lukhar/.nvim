@@ -1,7 +1,8 @@
 "repositories {{{1
 call plug#begin('~/.config/nvim/plugged')
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -340,7 +341,7 @@ lua << EOF
 
   local on_attach = function(client, bufnr)
       vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-      vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+      vim.cmd("command! LspFormatting lua vim.lsp.buf.format { async = true }")
       vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
       vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
       vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
@@ -371,24 +372,49 @@ lua << EOF
       -- end
   end
 
-  local lsp_installer = require("nvim-lsp-installer")
+  local mason_lspconfig = require("mason-lspconfig")
 
-  -- Register a handler that will be called for all installed servers.
-  -- Alternatively, you may also register handlers on specific server instances instead (see example below).
-  lsp_installer.on_server_ready(function(server)
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+  require("mason").setup()
+  mason_lspconfig.setup {
+    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "efm", "tsserver", "vimls", "terraformls" },
+  }
 
-      local opts = {
+  mason_lspconfig.setup_handlers({
+    function(server_name)
+      lspconfig[server_name].setup {
         on_attach = on_attach,
-        capabilities = capabilities
       }
+    end,
 
-      if server.name == "efm" then
-        opts.init_options = {
+    ["pyright"] = function()
+      lspconfig.pyright.setup({
+        on_attach = on_attach,
+
+        on_init = function(client)
+          client.config.settings.python.pythonPath = python_path()
+        end,
+
+        settings = {
+          python = {
+            pythonPath="",
+            analysis = {
+              -- Disable strict type checking
+              typeCheckingMode = "off"
+            }
+          }
+        },
+      })
+    end,
+
+    ["efm"] = function()
+      lspconfig.efm.setup({
+        on_attach = on_attach,
+
+        init_options = {
           documentFormatting = true
-        }
+        },
 
-        opts.settings = {
+        settings = {
           rootMarkers = {".git/"},
           languages = {
             python = {
@@ -398,50 +424,38 @@ lua << EOF
                 lintStdin = true,
                 lintIgnoreExitCode = true,
                 lintFormats = {"%f:%l:%c: %m"} }
-            }
-          }
-        }
-      end
+            },
+          },
+        },
+      })
+    end,
 
-      if server.name == "pyright" then
-        opts.before_init = function(_, config)
-          config.settings.python.pythonPath = python_path()
-        end
 
-        opts.settings = {
-           python = {
-             analysis = {
-               typeCheckingMode = "off"
-             }
-           }
-        }
-      end
+    ["lua_ls"] = function()
+      lspconfig.lua_ls.setup({
+        on_attach = on_attach,
 
-      if server.name == "lua_ls" then
-        opts.settings = {
-            Lua = {
-              diagnostics = {
-                enable = true,
-                globals = { "vim", "describe", "awesome", "client", "screen", "root" },
-                disable = { "lowercase-global" }
-              },
-              workspace = {
-                library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                        [vim.fn.expand("/usr/share/awesome/lib")] = true
-                },
-                maxPreload = 2000,
-                preloadFileSize = 2000
-              }
-            }
-          }
-      end
-
-      -- This setup() function is exactly the same as lspconfig's setup function.
-      -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-      server:setup(opts)
-  end)
+        settings = {
+           Lua = {
+             diagnostics = {
+               enable = true,
+               globals = { "vim", "describe", "awesome", "client", "screen", "root" },
+               disable = { "lowercase-global" }
+             },
+             workspace = {
+               library = {
+                       [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                       [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                       [vim.fn.expand("/usr/share/awesome/lib")] = true
+               },
+               maxPreload = 2000,
+               preloadFileSize = 2000
+             },
+           },
+         },
+      })
+    end,
+  })
 EOF
 
 "tree-sitter {{{2
