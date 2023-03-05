@@ -376,7 +376,7 @@ lua << EOF
 
   require("mason").setup()
   mason_lspconfig.setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "efm", "tsserver", "vimls", "terraformls" },
+    ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "efm", "tsserver", "vimls", "terraformls", "ltex" },
   }
 
   mason_lspconfig.setup_handlers({
@@ -429,6 +429,17 @@ lua << EOF
       })
     end,
 
+    ["ltex"] = function()
+      lspconfig.ltex.setup({
+        on_attach = on_attach,
+
+        settings =  {
+          ltex = {
+            language = "en-GB",
+          },
+	      },
+      })
+    end,
 
     ["lua_ls"] = function()
       lspconfig.lua_ls.setup({
