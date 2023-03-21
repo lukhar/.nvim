@@ -398,7 +398,7 @@ lua << EOF
           python = {
             analysis = {
               -- Disable strict type checking
-              -- typeCheckingMode = "off"
+              typeCheckingMode = "off"
             }
           }
         },
