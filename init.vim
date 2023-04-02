@@ -240,6 +240,10 @@ lua <<EOF
   end
 EOF
 "plugin settings {{{1
+" mason {{{2
+"use dark backgorund
+autocmd FileType mason highlight MasonNormal guibg=#002b36
+
 " fzf {{{2
 nnoremap <Leader>e :GFiles<CR>
 nnoremap <Leader>f :Files<CR>
@@ -372,9 +376,19 @@ lua << EOF
       -- end
   end
 
+
+  require("mason").setup({
+    ui = {
+      icons = {
+          package_installed = "⚫",
+          package_pending = "➜",
+          package_uninstalled = "⚪"
+      }
+    }
+  })
+
   local mason_lspconfig = require("mason-lspconfig")
 
-  require("mason").setup()
   mason_lspconfig.setup {
     ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "efm", "tsserver", "vimls", "terraformls", "ltex" },
   }
