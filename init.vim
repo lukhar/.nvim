@@ -228,17 +228,6 @@ nnoremap ;f :find **/*
 cmap eE e **/*
 cmap fF find **/*
 
-"floating windows {{{2
-lua <<EOF
-  local win = require("lspconfig.ui.windows")
-  local _default_opts = win.default_opts
-
-  win.default_opts = function(options)
-    local opts = _default_opts(options)
-    opts.border = "single"
-    return opts
-  end
-EOF
 "plugin settings {{{1
 " mason {{{2
 "use dark backgorund
@@ -263,10 +252,6 @@ lua <<EOF
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  end
-
-  local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
   end
 
   cmp.setup({
@@ -322,7 +307,7 @@ lua <<EOF
   })
 EOF
 
-" lsp {{{2
+" lsp" {{{2
 lua << EOF
   -- uncomment for debugging
   -- vim.lsp.set_log_level("debug")
@@ -449,6 +434,7 @@ lua << EOF
 
         settings =  {
           ltex = {
+            enabled = { "gitcommit", "markdown", "bib", "org", "plaintex", "rst", "tex", "pandoc" },
             language = "en-GB",
           },
 	      },
