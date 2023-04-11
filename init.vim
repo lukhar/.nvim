@@ -592,7 +592,7 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
 " solarized {{{2
-silent! call togglebg#map("<F10>")
+nnoremap <F10> :call ToggleBackground()<CR>
 " local-vimrc {{{2
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
@@ -721,6 +721,15 @@ endfunction
 " Change color when focus gained
 function! FocusGainedActive()
   setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+endfunction
+
+" Flip background color
+function! ToggleBackground()
+    if &background == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
 endfunction
 
 " manage git project sessions {{{2
