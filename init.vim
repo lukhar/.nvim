@@ -45,7 +45,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch' | Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' , { 'commit': 'c9c08ff9ef57775dbfe4ef4344f3c203bd4141ab' }
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
