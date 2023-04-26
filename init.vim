@@ -17,8 +17,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'bigbrozer/vim-nagios'
-Plug 'chrisbra/vim-diff-enhanced'
 Plug 'cespare/vim-toml'
+Plug 'chrisbra/vim-diff-enhanced'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
@@ -26,18 +26,22 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'hashivim/vim-terraform'
+Plug 'ishan9299/nvim-solarized-lua'
 Plug 'itchyny/lightline.vim' | Plug 'mengelbrecht/lightline-bufferline'
+Plug 'jparise/vim-graphql'
 Plug 'junegunn/vim-slash'
 Plug 'kana/vim-textobj-user' | Plug 'bps/vim-textobj-python'
 Plug 'lambdalisue/fern.vim' | Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'lifepillar/vim-solarized8'
+Plug 'leafgarland/typescript-vim'
+Plug 'lervag/vimtex'
 Plug 'liuchengxu/vista.vim'
 Plug 'lsdr/monokai'
 Plug 'machakann/vim-highlightedyank'
-Plug 'mattn/emmet-vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'mattn/emmet-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'othree/xml.vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'rodjek/vim-puppet'
 Plug 'tfnico/vim-gradle'
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -54,10 +58,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-pandoc/vim-pandoc-syntax' | Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-scripts/groovyindent-unix'
 Plug 'vim-scripts/matchit.zip'
-Plug 'lervag/vimtex'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'jparise/vim-graphql'
 
 call plug#end()
 
@@ -138,7 +138,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 "color scheme
-silent! colorscheme solarized8
+silent! colorscheme solarized
 syntax on
 
 " auto completion adjustments
