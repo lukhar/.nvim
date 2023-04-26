@@ -70,6 +70,11 @@ endif
 " nvim specfic settings {{{2
 set inccommand=nosplit
 
+" workaround for: https://github.com/neovim/neovim/issues/22614
+lua <<EOF
+vim.schedule(function () vim.o.background = "dark" end)
+EOF
+
 "properties {{{2
 " set powerline Fonts
 if has("gui_running") &&  ! has("mac")
