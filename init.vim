@@ -1,5 +1,5 @@
 "repositories {{{1
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/legacy-nvim/plugged')
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
